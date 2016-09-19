@@ -88,7 +88,7 @@ $(document).ready(function(){
             success: function(result){
 
                 if(result.status) {
-
+                    
                     $('#datatable').DataTable().ajax.reload();
 
                     $("#deleteModal").modal("hide");

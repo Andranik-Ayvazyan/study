@@ -46,6 +46,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->quantity = $request->input('quantity');
         $product->price = $request->input('price');
+        $product->image = $request->input('image');
         $product->save();
 
         return back();

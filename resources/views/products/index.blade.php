@@ -128,6 +128,10 @@
                 <label>Price:</label>
                 <input type="text" name = 'price' class="form-control" >
               </div>
+              <div class="form-group">
+                <label>Image Link:</label>
+                <input type="text" name = 'image' class="form-control" >
+              </div>
               <button type="submit" class="btn btn-default add">Add product</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </form>

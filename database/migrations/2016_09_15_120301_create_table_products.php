@@ -18,6 +18,8 @@ class CreateTableProducts extends Migration
             $table->string('description');
             $table->integer('quantity');
             $table->integer('price');
+            $table->string('image');
+            
 
 
         });

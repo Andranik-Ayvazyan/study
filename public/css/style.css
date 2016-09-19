@@ -1,7 +1,4 @@
 /*----------main page-------------*/
-body {
-     background-color: #e8e0e0;
- }
 
 div.main, .reg_form {
     background-color: #f6f7f1;
@@ -68,5 +65,65 @@ div.reg_form form input[type = 'submit'] {
 
     background-color: #2ca02c;
     cursor: pointer;
+
+}
+
+
+/*----opened product item-----*/
+
+
+.product_item {
+
+    height: 250px;
+    width: 210px;
+    padding:10px 6px;
+    float: left;
+    margin-left:5vw;
+    border:1px solid grey;
+    box-shadow:0 0 3px grey;
+    background-color: #e3f7ff;
+
+}
+
+.navbar-default {
+    background-color: #2a3f54;
+}
+
+.show_content {
+    padding: 0 10vw;
+}
+.product_item h3 {
+    text-align: center;
+}
+
+.product_item .item_price {
+    color:red;
+}
+
+.product_img,.product_name {
+
+    float:left;
+}
+
+.product_img {
+
+    height: 320px;width: 590px;
+}
+
+.show_description {
+    margin: 0 auto;
+    padding:2vw;
+    border:1px solid grey;
+}
+
+.show_description legend {
+
+    border-bottom: none;
+    width:108px;
+}
+
+.show_price {
+
+    color:red;
 
 }

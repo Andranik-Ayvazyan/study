@@ -11,11 +11,7 @@
 |
 */
 
-    Route::get('/', function () {
-
-        return view('welcome');
-
-    })->name('das');
+    Route::get('/','UserController@index' )->name('user');
 
   /*  Route::pattern('id', '[0-9]+');// global constraints
 
@@ -93,7 +89,7 @@
 
     Route::group(['middleware' => 'web',], function () {
 
-        Route::get('/user/dashboard','UserController@index');
+        Route::get('products/{id}','ProductController@show');
 
         Route::group(['middleware' => 'admin','prefix' => 'admin'], function () {
 
@@ -108,6 +104,8 @@
         });
 
     });
+
+
 
     Route::get('/cards','CardsController@index');
 
