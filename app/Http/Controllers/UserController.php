@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Model\Product;
     use Illuminate\Http\Request;
 
     use App\Http\Requests;
@@ -12,7 +13,8 @@
         public function index ()
         {
 
-            return view('user.user');
+            $products = Product::all();
+            return view('user.user',['product'=>$products]);
 
         }
 
