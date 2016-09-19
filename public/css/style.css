@@ -1,0 +1,72 @@
+/*----------main page-------------*/
+body {
+     background-color: #e8e0e0;
+ }
+
+div.main, .reg_form {
+    background-color: #f6f7f1;
+    height:33vh;
+    width:25vw;
+    border-radius: 5px;
+    box-shadow: 0 0 20px grey;
+    margin:100px auto;
+}
+
+div.main form input:not([type='submit']), div.reg_form form input {
+    background-color: transparent;
+    width:80%;
+    height:30px;
+    border-radius: 5px;
+    margin: 20px 0 5px 2vw;
+    outline: none;
+    text-indent: 5px;
+    border-color: transparent;
+    border-bottom:1px solid grey;
+}
+
+div.buttons {
+    margin-top: 45px;
+}
+
+div.buttons a, div.buttons input  {
+    display:inline-block;
+    text-decoration: none;
+    margin-left:65px;
+}
+
+div.buttons a {
+    background-color: #2ca02c;
+    padding: 4px 5px;
+    color:white;
+    border-radius: 5px;
+}
+
+div.buttons input {
+    background-color: #0848b2;
+    padding: 4px 5px;
+    color:white;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+
+/* ------------------- registration form -----------*/
+
+div.reg_form form input[type='radio'] {
+    width:initial;
+    height:initial;
+    cursor: pointer;
+}
+
+div.reg_form {
+
+    height:55vh;
+}
+
+div.reg_form form input[type = 'submit'] {
+
+    background-color: #2ca02c;
+    cursor: pointer;
+
+}
