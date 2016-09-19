@@ -79,7 +79,8 @@ class AuthController extends Controller
             return redirect()->intended('/admin/dashboard');
 
         }
-        return redirect()->intended($this->redirectPath());
+        //return redirect()->intended($this->redirectPath());
+        return redirect()->intended('/user/dashboard');
     }
 
    /* public function getLogin(Request $request)
