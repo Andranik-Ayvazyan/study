@@ -33,7 +33,7 @@
             <tr>
               <th>Id</th>
               <th>Name</th>
-              <th>Description</th>
+              <th class="prod_desc">Description</th>
               <th>Quantity</th>
               <th>Price</th>
               <th>Action</th>
