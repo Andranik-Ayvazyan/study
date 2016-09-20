@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -29,7 +31,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new authentication controller instance.
@@ -65,41 +67,114 @@ class AuthController extends Controller
     
     protected function create(array $data)
     {
+
+        $verifyToken = md5(uniqid());
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'verify' => $verifyToken,
         ]);
     }
 
     public function authenticated($request, $user)
     {
+        
+        
+        
         if($user->isAdmin){
 
             return redirect()->intended('/admin/dashboard');
 
         }
         //return redirect()->intended($this->redirectPath());
-        return redirect()->intended('/user/dashboard');
+        return redirect()->intended('/');
     }
 
-   /* public function getLogin(Request $request)
+    public function register(Request $request)
     {
-        return dd($request);
+
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        $user = $this->create($request->all());
+
+
+        $this->sendEmailVerification($user);
+
+//        Auth::guard($this->getGuard())->login();
+
+        return redirect('login')->with('linkToEmail','A verification link is  sent to your E-mail !');
     }
-*/
-//    public function postLogin(Request $request)
-//    {
-//
-//    }
-///*
-//    public function showLoginForm()
-//    {
-//        dd('a');
-//    }
-//*/
-//    public function postRegister(Request $request)
-//    {
-//        echo $request->input('email');
-//    }
+
+    public function sendEmailVerification(User $user)
+    {
+
+        Mail::send('emails.confirm', ['user'=>$user], function($m) use ($user) {
+
+            $m->from('andranik-ayvazyan@mail.ru','Please confirm your account');
+
+            $m->to($user->email,$user->name)->subject('verify link');
+
+        });
+
+    }
+
+
+    public function confirmEmail ($token)
+    {
+
+       $user = User::where('verify',$token)->first();
+
+       if($user) {
+           $user->verify = null;
+           $user->save();
+           return redirect('login')->with('verified', 'You are verified!');
+       } else{
+           return abort(404);
+       }
+
+    }
+
+
+    public function login(Request $request)
+    {
+        $this->validateLogin($request);
+
+        $throttles = $this->isUsingThrottlesLoginsTrait();
+
+        if ($throttles && $lockedOut = $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+
+            return $this->sendLockoutResponse($request);
+        }
+
+        $credentials = $this->getCredentials($request);
+
+        $user = User::where('email', $credentials['email'])->first();
+
+        if($user && $user->verify !== null){
+
+            return redirect('login')->with('verify','You must visit the link is  sent to your E-mail account');
+
+        }
+
+        if (Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'))) {
+
+            return $this->handleUserWasAuthenticated($request, $throttles);
+        }
+
+        if ($throttles && ! $lockedOut) {
+            $this->incrementLoginAttempts($request);
+        }
+
+        return $this->sendFailedLoginResponse($request);
+    }
+    
 }

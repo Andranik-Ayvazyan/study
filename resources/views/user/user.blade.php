@@ -1,9 +1,8 @@
 @extends('layouts.app')
 
-
 @section('content')
 
-    @foreach($product as $product)
+     @foreach($product as $product)
 
         <a href = 'http://laratask/products/{{$product->id}}'>
         <div class="product_item">

@@ -7,7 +7,31 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
+
+                    @if(session('linkToEmail'))
+                        <div class="alert alert-info" width="50%">
+                            {{ session('linkToEmail') }}
+                        </div>
+                    @endif
+
+                    @if(session('verified'))
+
+                        <div class="alert alert-info">
+                            {{ session('verified') }}
+                        </div>
+
+                    @endif
+
+                    @if(session('verify'))
+
+                        <div class="alert alert-info">
+                            {{ session('verify') }}
+                        </div>
+
+                    @endif
+
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -63,4 +87,5 @@
         </div>
     </div>
 </div>
+
 @endsection

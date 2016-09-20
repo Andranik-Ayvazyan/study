@@ -1,0 +1,1 @@
+<a href = "{{ url('verify/' . $user->verify) }}">Click this link to verify your account</a>

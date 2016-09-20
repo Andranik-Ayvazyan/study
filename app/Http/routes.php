@@ -84,10 +84,17 @@
 
     Route::post('register', 'Auth\AuthController@postRegister');
 
+    Route::get('/verify/{token}','Auth\AuthController@confirmEmail');
+
+
     Route::get('logout','Auth\AuthController@logout');
 
+   
 
     Route::group(['middleware' => 'web',], function () {
+        
+
+        Route::get('/send','UserController@sendMail');
 
         Route::get('products/{id}','ProductController@show');
 
