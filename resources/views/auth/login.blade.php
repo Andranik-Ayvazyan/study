@@ -9,7 +9,7 @@
                 <div class="panel-body">
 
                     @if(session('linkToEmail'))
-                        <div class="alert alert-info" width="50%">
+                        <div class="alert   alert-info" width="50%">
                             {{ session('linkToEmail') }}
                         </div>
                     @endif
