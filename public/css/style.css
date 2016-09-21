@@ -82,6 +82,7 @@ div.reg_form form input[type = 'submit'] {
     border:1px solid grey;
     box-shadow:0 0 3px grey;
     background-color: #e3f7ff;
+    margin-top:20px;
 
 }
 
@@ -126,4 +127,35 @@ div.reg_form form input[type = 'submit'] {
 
     color:red;
 
+}
+
+.product_panel {
+
+    width:90%;
+    margin:50px auto;
+
+}
+
+.product_panel .panel-heading {
+
+    background-color: #2a3f54;
+}
+
+
+.toggle_prod_table {
+
+    width:55px;
+    float: right;
+
+}
+
+.toggle_prod_table a i, h3.panel-title {
+
+    color:white !important;
+}
+
+.product_panel .panel-footer nav  {
+
+    width: 250px;
+    margin:0 auto ;
 }
