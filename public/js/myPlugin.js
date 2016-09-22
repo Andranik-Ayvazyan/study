@@ -1,85 +1,102 @@
 +function ($) {
     'use strict';
 
-    // ALERT CLASS DEFINITION
-    // ======================
+    var toggle = '[data-plugin="panel"]';
 
-    var dismiss = '[data-dismiss="alert"]'
-    var Alert   = function (el) {
-        $(el).on('click', dismiss, this.close)
+    var Panel   = function (el, options) {
+
+        this.$element = $(el);
+
+        this.options = options;
+
+        this.isOpen = this.$element.hasClass('open');
+
+        this.$toggleElement = this.$element.find('[data-toggle="panel.toggle"]');
+
+        this.$toggleElement.on('click', this.toggle);
+        // $(el).on('click', dismiss, this.close)
+
+        this.init();
+
     }
 
-    Alert.VERSION = '3.3.6'
+    Panel.DEFAULT = {};
 
-    Alert.TRANSITION_DURATION = 150
+    Panel.prototype.init = function () {
 
-    Alert.prototype.close = function (e) {
-        var $this    = $(this)
-        var selector = $this.attr('data-target')
+        if (this.options.content){
+            if(this.options.content.ajax){
 
-        if (!selector) {
-            selector = $this.attr('href')
-            selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+                this.request(this.options.content.ajax);
+
+            }
         }
-
-        var $parent = $(selector)
-
-        if (e) e.preventDefault()
-
-        if (!$parent.length) {
-            $parent = $this.closest('.alert')
-        }
-
-        $parent.trigger(e = $.Event('close.bs.alert'))
-
-        if (e.isDefaultPrevented()) return
-
-        $parent.removeClass('in')
-
-        function removeElement() {
-            // detach from parent, fire event then clean up data
-            $parent.detach().trigger('closed.bs.alert').remove()
-        }
-
-        $.support.transition && $parent.hasClass('fade') ?
-            $parent
-                .one('bsTransitionEnd', removeElement)
-                .emulateTransitionEnd(Alert.TRANSITION_DURATION) :
-            removeElement()
     }
 
+    Panel.prototype.request = function (params) {
+        $.ajax({
 
-    // ALERT PLUGIN DEFINITION
-    // =======================
+            url:params.url,
+            data:params.data,
+            success:function(){
+                debugger;
+            }
 
-    function Plugin(option) {
-        return this.each(function () {
-            var $this = $(this)
-            var data  = $this.data('bs.alert')
-
-            if (!data) $this.data('bs.alert', (data = new Alert(this)))
-            if (typeof option == 'string') data[option].call($this)
         })
     }
 
-    var old = $.fn.alert
+    Panel.prototype.toggle = function (e) {
 
-    $.fn.alert             = Plugin
-    $.fn.alert.Constructor = Alert
+        var $toggleElement = $(this).find('i');
+
+        var elemClass = $toggleElement.attr('class');
 
 
-    // ALERT NO CONFLICT
-    // =================
+        if(elemClass.match('down')) {
 
-    $.fn.alert.noConflict = function () {
-        $.fn.alert = old
-        return this
+            $toggleElement.removeClass('fa-chevron-down').addClass('fa fa-chevron-up');
+
+        } else {
+
+            $toggleElement.removeClass('fa-chevron-up').addClass('fa fa-chevron-down');
+
+        }
+
+
+
+        $(this).closest(toggle).find('.panel-content').animate({
+
+            height:'toggle'
+
+        },700);
+
+        // $(this).closest(toggle).toggleClass('open')
+        //     .find('.panel-content').show().toggleClass('in');
     }
+
+    function Plugin(option) {
+
+        return this.each(function () {
+
+            var $this = $(this)
+            var data  = $this.data('my.panel')
+            var options = $.extend({}, Panel.DEFAULTS, $this.data(), typeof option == 'object' && option)
+            
+            if (!data) $this.data('my.panel', (data = new Panel(this, options)))
+
+            if (typeof option == 'string') data[option].call($this)
+
+        })
+    }
+    
+
+    $.fn.panelWidget             = Plugin
+    $.fn.panelWidget.Constructor = Panel
 
 
     // ALERT DATA-API
     // ==============
 
-    $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
+    // $(document).on('click.bs.alert.data-api', dismiss, Alert.prototype.close)
 
 }(jQuery);

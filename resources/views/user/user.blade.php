@@ -3,27 +3,16 @@
 @section('content')
 
     <div class="row">
-        <div class="panel panel-info product_panel">
+        <div class="panel panel-info product_panel" data-plugin="panel">
             <div class="panel-heading">
-                <h3 class="panel-title">Products list<p class="toggle_prod_table"><a class="collapse-link"><i class="fa fa-chevron-down"></i></a></p></h3>
+                <h3 class="panel-title">Products list
+                        <a class="collapse-link" data-toggle="panel.toggle"><i class="fa  fa-chevron-down"></i></a>
+                </h3>
             </div>
-              <div class="p_content">
+              <div class="panel-content">
                 <div class="panel-body">
 
-                    @foreach($product as $product)
-
-                        <a href = 'http://laratask/products/{{$product->id}}'>
-                            <div class="product_item">
-                                <div class="prod_img">
-                                    <img src="{{$product->image}}" alt="" width=200 height="120">
-                                </div>
-                                <hr>
-                                <h3><a href='http://laratask/products/{{$product->id}}'>{{$product->name}}</a></h3>
-                                <h3 class="item_price">{{$product->price}}</h3>
-                            </div>
-                        </a>
-
-                    @endforeach
+l;jhykjghljkgljhgkj
 
 
                 </div>
@@ -53,7 +42,20 @@
           </div>
         </div>
     </div>
+                   {{--@foreach($product as $product)--}}
 
+        {{--<a href = 'http://laratask/products/{{$product->id}}'>--}}
+                            {{--<div class="product_item">--}}
+                                {{--<div class="prod_img">--}}
+                                    {{--<img src="{{$product->image}}" alt="" width=200 height="120">--}}
+                                {{--</div>--}}
+                                {{--<hr>--}}
+                                {{--<h3><a href='http://laratask/products/{{$product->id}}'>{{$product->name}}</a></h3>--}}
+                                {{--<h3 class="item_price">{{$product->price}}</h3>--}}
+                            {{--</div>--}}
+                        {{--</a>--}}
+
+                    {{--@endforeach--}}
 @stop
 
 

@@ -108,7 +108,8 @@ div.reg_form form input[type = 'submit'] {
 
 .product_img {
 
-    height: 320px;width: 590px;
+    height: 320px;
+    width: 590px;
 }
 
 .show_description {
@@ -142,10 +143,10 @@ div.reg_form form input[type = 'submit'] {
 }
 
 
-.toggle_prod_table {
+[data-toggle="panel.toggle"] {
 
-    width:55px;
     float: right;
+    cursor:pointer;
 
 }
 
@@ -158,4 +159,18 @@ div.reg_form form input[type = 'submit'] {
 
     width: 250px;
     margin:0 auto ;
+
 }
+
+/*.panel{*/
+    /*height:150px;*/
+/*}*/
+
+/*.panel .panel-content {*/
+    /*opacity:1;*/
+/*}*/
+
+/*.panel.open .panel-content {*/
+    /*opacity: 0;*/
+    /*!*display: block;*!*/
+/*}*/

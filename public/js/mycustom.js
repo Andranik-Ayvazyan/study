@@ -106,4 +106,20 @@ $(document).ready(function(){
     })
 
 
+    $('[data-plugin="panel"]').panelWidget({
+
+        content:{
+
+            ajax: {
+                
+                url: 'http://laratask',
+                params: {page:1},
+                callback: function () {
+
+                }
+            }
+
+        }
+    });
+
 });
