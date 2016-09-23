@@ -341,7 +341,8 @@
 
       <script src="/js/datatable/jq-datatable.js"></script>
 
-      <script src = '/js/mycustom.js'></script>
+    <script src = '/js/mycustom.js'></script>
+    <script src = '/js/myplugin.js'></script>
 
     <!-- Flot -->
     <script>

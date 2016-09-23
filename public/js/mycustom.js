@@ -106,20 +106,51 @@ $(document).ready(function(){
     })
 
 
+
+    
+    
+
+    
+    function fillPanelBody (response,object) {
+
+        $(object.body).empty()
+
+            for(i = 0; i < response.products.length; i++) {
+
+                $(object.body).append("<a href = 'http://laratask/products/"+response.products[i].id+"'>"+
+                    "<div class='product_item'>"+
+                    "<div class='prod_img'>"+
+                    "<img src='"+response.products[i].image+"' alt='product image' width=200 height='120'>"+
+                    "</div>"+
+                    "<hr>"+
+                    "<h3><a href='http://laratask/products/"+response.products[i].id+"'>"+response.products[i].name+"</a></h3>"+
+                    "<h3 class='item_price'>"+response.products[i].price+"</h3>"+
+                    "</div>"+
+                    "</a>");
+
+            }
+
+    }
+
+
     $('[data-plugin="panel"]').panelWidget({
 
         content:{
 
             ajax: {
-                
-                url: 'http://laratask',
-                params: {page:1},
-                callback: function () {
+
+               url: 'http://laratask',
+               data: {page:0},
+               callback: function (response, object) {
+
+                       // drowPagination(response, object);
+
+                        fillPanelBody (response, object);
 
                 }
             }
-
         }
+
     });
 
 });

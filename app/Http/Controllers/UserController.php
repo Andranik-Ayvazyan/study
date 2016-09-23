@@ -11,13 +11,36 @@
     class UserController extends Controller
     {
 
-        public function index ()
+        public function index (Request $request)
         {
 
-            $products = Product::all();
-            return view('user.user',['product'=>$products]);
+            if($request->ajax()) {
+
+                $productsAll = Product::all();
+                $total = count($productsAll);
+
+                if($request->page == 0 || $request->page == 1) {
+
+                    $rowItem = 0;
+
+                } else {
+
+                    $rowItem = ($request->page*4)-4;
+                }
+
+
+                $products = Product::offset($rowItem )->limit(4)->get();
+
+                return response()->json(['products'=>$products,'total'=>$total]);
+
+            } else {
+
+                $products = Product::all();
+                return view('user.user',['product'=>$products]);
+            }
 
         }
+        
         
         public function sendMail ()
         {
