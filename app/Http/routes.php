@@ -106,7 +106,7 @@
 
             Route::post('products/data',[ 'as' => 'products.data', 'uses' => 'ProductController@data']);
 
-            Route::delete('products/{id}','ProductController@destroy');
+            Route::resource('products/{id}','ProductController@destroy');
 
 
 

@@ -7,7 +7,7 @@
 
         this.$element = $(el);
 
-        this.body = $(el).find('.panel-body');
+        this.body = ('.panel-body');
 
         this.pagination =  $(el).find('ul.pagination');
 
@@ -28,9 +28,6 @@
         this.data = {page:0};
 
         this.callback =  options.content.ajax.callback;
-
-        this.currentPage = $(el).find('ul.pagination li');
-
 
     }
 
@@ -77,7 +74,7 @@
 
         for( i = 0;i < pagesCount; i++) {
 
-            $(object.pagination).append("<li><a class = 'page-link'>"+(i+1)+"</a></li>")
+            $(object.pagination).append("<li class = 'page-link'><a >"+(i+1)+"</a></li>")
 
         }
 
@@ -105,8 +102,16 @@
 
                 self.drowPagination(response,self);
 
-                self.currentPage.eq(self.data-1).find('a').addClass('active');
-                debugger;
+                $('ul.pagination li.page-link').removeClass('active');
+
+                if(self.data.page == 0) {
+
+                    $('ul.pagination li.page-link').eq(self.data.page).addClass('active');
+
+                } else {
+
+                    $('ul.pagination li.page-link').eq(self.data.page-1).addClass('active');
+                }
             }
 
         })

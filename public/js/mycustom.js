@@ -74,14 +74,16 @@ $(document).ready(function(){
     $(document).on('click','.delete',function(){
 
         var elem = $(this).closest('.modal');
+        ;
 
-        var url = 'http://laratask/admin/products/'+elem.attr('data-id');
+        var url = "http://laratask/admin/products/"+elem.attr('data-id');
+
 
         $.ajax({
 
             url:url,
             type:'post',
-            data:'_method = delete',
+            data:'_method = DELETE',
             processData: false,
             contentType: false,
 

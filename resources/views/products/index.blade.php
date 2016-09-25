@@ -90,7 +90,7 @@
             <h4 class="modal-title">Delete product</h4>
           </div>
           <div class="modal-body">
-            <form  method ='post' id = 'edit_form'>
+            <form  method ='post' id = 'delete_form'>
               <h5>Do you want to delete this product ?</h5>
               <button type="button" class="btn btn-default delete">Delete</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
